@@ -1,0 +1,5 @@
+default:
+  extensions:
+    tayzlor\StatsdExtension\Extension:
+      host: ~
+      namespace: ~

@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="behat.statsd.host"></parameter>
+        <parameter key="behat.statsd.port"></parameter>
+        <parameter key="behat.statsd.namespace"></parameter>
+
+        <parameter key="behat.statsd.client.class">Domnikl\Statsd\Client</parameter>
+        <parameter key="behat.statsd.connection.class">Domnikl\Statsd\Connection\Socket</parameter>
+        <parameter key="behat.statsd.service.statsd.class">tayzlor\StatsdExtension\Service\StatsdService</parameter>
+        <parameter key="behat.statsd.listener.hook.class">tayzlor\StatsdExtension\EventListener\HookListener</parameter>
+    </parameters>
+
+    <services>
+
+        <service id="behat.statsd.client" class="%behat.statsd.client.class%" public="false">
+            <argument type="service" id="behat.statsd.connection" />
+            <argument type="string">%behat.statsd.namespace%</argument>
+        </service>
+
+        <service id="behat.statsd.connection" class="%behat.statsd.connection.class%" public="false">
+            <argument type="string">%behat.statsd.host%</argument>
+            <argument type="string">%behat.statsd.port%</argument>
+        </service>
+
+        <service id="behat.statsd.service.statsd" class="%behat.statsd.service.statsd.class%">
+            <argument type="service" id="behat.statsd.client" />
+        </service>
+
+        <service id="behat.statsd.listener.hook" class="%behat.statsd.listener.hook.class%">
+            <argument type="service" id="behat.statsd.service.statsd" />
+            <tag name="behat.event_subscriber" priority="0" />
+        </service>
+    </services>
+
+</container>
