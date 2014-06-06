@@ -2,5 +2,6 @@ default:
   extensions:
     tayzlor\StatsdExtension\Extension:
       host: ~
+      port: ~
       namespace: ~
       tags: ~

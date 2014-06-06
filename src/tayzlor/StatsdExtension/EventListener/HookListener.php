@@ -11,8 +11,6 @@ use Behat\Behat\Event\ScenarioEvent,
   Behat\Behat\Event\FeatureEvent,
   Behat\Behat\Event\StepEvent;
 
-use tayzlor\StatsdExtension\Service\StatsdService;
-
 /**
  * Hook event listener
  */
