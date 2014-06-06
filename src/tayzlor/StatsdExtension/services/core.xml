@@ -7,10 +7,10 @@
         <parameter key="behat.statsd.host"></parameter>
         <parameter key="behat.statsd.port"></parameter>
         <parameter key="behat.statsd.namespace"></parameter>
+        <parameter key="behat.statsd.tags"></parameter>
 
         <parameter key="behat.statsd.client.class">Domnikl\Statsd\Client</parameter>
         <parameter key="behat.statsd.connection.class">Domnikl\Statsd\Connection\Socket</parameter>
-        <parameter key="behat.statsd.service.statsd.class">tayzlor\StatsdExtension\Service\StatsdService</parameter>
         <parameter key="behat.statsd.listener.hook.class">tayzlor\StatsdExtension\EventListener\HookListener</parameter>
     </parameters>
 
@@ -26,12 +26,9 @@
             <argument type="string">%behat.statsd.port%</argument>
         </service>
 
-        <service id="behat.statsd.service.statsd" class="%behat.statsd.service.statsd.class%">
-            <argument type="service" id="behat.statsd.client" />
-        </service>
-
         <service id="behat.statsd.listener.hook" class="%behat.statsd.listener.hook.class%">
-            <argument type="service" id="behat.statsd.service.statsd" />
+            <argument type="service" id="behat.statsd.client" />
+            <argument>%behat.statsd.tags%</argument>
             <tag name="behat.event_subscriber" priority="0" />
         </service>
     </services>

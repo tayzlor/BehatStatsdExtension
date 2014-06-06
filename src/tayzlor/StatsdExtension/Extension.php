@@ -37,6 +37,7 @@ class Extension implements ExtensionInterface
     if (isset($config['namespace'])) {
       $container->setParameter('behat.statsd.namespace', $config['namespace']);
     }
+    $container->setParameter('behat.statsd.tags', $config['tags']);
   }
 
   /**
@@ -46,14 +47,18 @@ class Extension implements ExtensionInterface
   {
     $builder->
       children()->
-      scalarNode('host')->
-      defaultNull()->
+        scalarNode('host')->
+        defaultNull()->
       end()->
       scalarNode('port')->
-      defaultValue('8125')->
+        defaultValue('8125')->
       end()->
       scalarNode('namespace')->
-      defaultValue('')->
+        defaultValue('')->
+      end()->
+      arrayNode('tags')->
+        useAttributeAsKey('name')->
+        prototype('variable')->end()->
       end()->
       end()->
       end();

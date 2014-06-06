@@ -3,3 +3,4 @@ default:
     tayzlor\StatsdExtension\Extension:
       host: ~
       namespace: ~
+      tags: ~
