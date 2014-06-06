@@ -2,7 +2,7 @@
   "name": "tayzlor/statsd-extension",
   "type": "library",
   "description": "StatsD extension for behat",
-  "keywords": ["bdd", "behat", "statsd", "state"],
+  "keywords": ["bdd", "behat", "statsd", "stats"],
   "homepage": "http://github.com/tayzlor/",
   "license": "MIT",
   "authors": [
