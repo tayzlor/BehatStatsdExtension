@@ -2,8 +2,7 @@ BehatStatsdExtension
 ====================
 
 A StatsD extension for Behat.
-Provides integration with StatsD for sending metrics from Behat tests
-for graphing in a backend service such as Graphite.
+Provides integration with [StatsD](ttps://github.com/etsy/statsd/) for sending metrics from Behat tests
+for graphing in a backend service such as
+[Graphite](http://graphite.readthedocs.org/).
 
-[StatsD]: https://github.com/etsy/statsd/
-[Graphite]:http://graphite.readthedocs.org/
